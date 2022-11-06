@@ -59,7 +59,7 @@ function Questions() {
             {questions.length !== answers.length ? (
                 <LinearProgressWithLabel
                 value={progress}
-                clssName={classes.progressBar}
+                className={classes.progressBar}
                 />
             ) : null}
             <div className={classes.root}>

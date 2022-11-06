@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
         border: "none",
         padding: "1rem",
         boxShadow: "0 1px 1px 0 rgb(0 0 0 / 20%), 0 1px 2px 0 rgb(0 0 0 / 19%)",
+        background: "#e8ecff",
         "&:hover": {
-            background: "#d6d6d6",
+            background: "#b6bce2",
         },
     },
     buttonDownload: {
@@ -22,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
         border: "none",
         padding: "1rem",
         boxShadow: "0 1px 1px 0 rgb(0 0 0 / 20%), 0 1px 2px 0 rgb(0 0 0 / 19%)",
-        background: "#77bb77",
+        background: "#f5d7e3",
         "&:hover": {
-            background: "#548854",
+            background: "#e6b3c7",
         },
     },
     resume: {

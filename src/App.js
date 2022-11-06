@@ -61,6 +61,9 @@ function App() {
         <Typography
           variant="h6"
           style={{
+            color:"#7b777d",
+            fontSize: "2rem",
+            fontWeight: 800,
             textAlign: "center",
             margin: "2rem",
           }}
