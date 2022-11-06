@@ -1,25 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import AppContext from './AppContext';
+import questionsArray from './constants/questionsArray';
+import Questions from './components/Questions';
+import { Typography } from '@material-ui/core';
 
 function App() {
+  let [questions, setQuestions] = useState([]);
+  let [answers, setAnswers] = useState([]);
+  let [questionAnswer, setQuestionAnswer] = useState({});
+
+  useEffect(() => {
+    setQuestions(questionsArray);
+    setQuestionAnswer(questionsArray[0]);
+  }, []);
+
+  let handleChangeInput = (e) => {
+    setQuestionAnswer({
+      ...questionAnswer,
+      answer: e.target.value,
+    });
+  };
+
+  let nextQuestion = (e) => {
+    e.preventDefault();
+    questions.map((question) => {
+      if (question.resumeFieldId === questionAnswer.resumeFieldId) {
+        setAnswers([
+          ...answers,
+          { ...question, answer: questionAnswer.answer },
+        ]);
+      };
+      return null;
+    });
+
+    questions.map((qa, index) => {
+      if (index <= questions.length) {
+        if (qa.resumeFieldId === questionAnswer.resumeFieldId) {
+          setQuestionAnswer(questions[index + 1]);
+        };
+      };
+      return null;
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <AppContext.Provider
+      value={{
+        state: {
+          questionAnswer,
+          questions,
+          answers,
+        },
+        function: {
+          handleChangeInput: handleChangeInput,
+          nextQuestion: nextQuestion,
+        },
+      }}
+    >
+      <div className='App'>
+        <Typography
+          variant="h6"
+          style={{
+            textAlign: "center",
+            margin: "2rem",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Resume Builder
+        </Typography>
+        <Questions />
+      </div>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;
